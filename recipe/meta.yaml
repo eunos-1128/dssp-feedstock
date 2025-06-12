@@ -19,6 +19,7 @@ build:
       -DCMAKE_FIND_APPBUNDLE=NEVER
       -DCMAKE_CXX_COMPILER=${CXX}
       -DCMAKE_CXX_FLAGS="-D_LIBCPP_DISABLE_AVAILABILITY"  # [osx]
+      -D_CXX_ATOMIC_BUILTIN_EXITCODE=0  # [osx and arm64]
       ${CMAKE_ARGS}
     - cmake --build build --config Release
     - cmake --install build
