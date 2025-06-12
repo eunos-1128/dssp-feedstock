@@ -1,50 +1,64 @@
-{% set version = "4.4.11" %}
+{% set name = "DSSP" %}
+{% set version = "4.5.3" %}
 
 package:
-  name: dssp
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://github.com/PDB-REDO/dssp/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 49dd6560358ba65fb971e158f78a54557ab6da1c49e502704b3bb9518e17acce
+  url: https://github.com/PDB-REDO/{{ name|lower }}/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: 8dd92fdf2a252a170c8a811e3adb752e0f2860318ecb2b6ed5e4fd1d2b5ce5e6
 
 build:
   number: 0
-  script:
-    - >
-      cmake -S . -B build
-      -DCMAKE_BUILD_TYPE=Release
-      -DCMAKE_INSTALL_PREFIX={{ PREFIX }}
-      -DCMAKE_FIND_FRAMEWORK=NEVER
-      -DCMAKE_FIND_APPBUNDLE=NEVER
-      -DCMAKE_CXX_COMPILER=${CXX}
-      -DCMAKE_CXX_FLAGS="-D_LIBCPP_DISABLE_AVAILABILITY"  # [osx]
-      -D_CXX_ATOMIC_BUILTIN_EXITCODE=0  # [osx and arm64]
-      ${CMAKE_ARGS}
-    - cmake --build build --config Release
-    - cmake --install build
+  script_env:
+    - CMAKE_GENERATOR=Ninja
+    - {{ pin_subpackage(name|lower, max_pin="x") }}
 
 requirements:
   build:
-    - {{ stdlib("c") }}
     - {{ compiler("cxx") }}
+    # - {{ stdlib("c") }}
     - cmake
-    - make
+    - ninja
   host:
+    - bzip2
+    - eigen
+    - icu
+    - libboost-devel >=1.86.0,<1.87.0
+    - libboost-python-devel >=1.86.0,<1.87.0
+    - python
     - zlib
+  run:
+    - python
 
 test:
+  requires:
+    - curl
+    - grep  # [unix]
+    - pip
+  imports:
+    - mkdssp
   commands:
     - mkdssp --version
+    - mkdssp --help
+    - pip check
+  source_files:
+    - test/1cbs.cif.gz
 
 about:
-  home: https://github.com/PDB-REDO/dssp
+  home: https://pdb-redo.eu/dssp
+  doc_url: https://github.com/PDB-REDO/dssp/blob/trunk/doc/mkdssp.md
+  dev_url: https://github.com/PDB-REDO/dssp
   license: BSD-2-Clause
   license_family: BSD
   license_file: LICENSE
-  summary: Application to assign secondary structure to proteins
-  doc_url: https://pdb-redo.eu/dssp
-  dev_url: https://github.com/PDB-REDO/dssp
+  summary: "Application to assign secondary structure to proteins"
+  description: |
+    DSSP (Define Secondary Structure of Proteins) is a program that assigns
+    secondary structure to proteins based on their 3D structure. It is widely
+    used in structural biology and bioinformatics for analyzing protein
+    structures.
 
 extra:
   recipe-maintainers:
