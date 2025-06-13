@@ -2,8 +2,6 @@
 
 set -exo pipefail
 
-export CMAKE_GENERATOR=Ninja
-
 if [[ "$OSX_ARCH" == "x86_64" ]]; then
     export MACOSX_DEPLOYMENT_TARGET="10.15"
     export CXXFLAGS="${CXXFLAGS} -mmacosx-version-min=10.15"

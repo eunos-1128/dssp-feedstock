@@ -1,8 +1,5 @@
 @echo on
 
-set CMAKE_GENERATOR=Ninja
-set "CMAKE_ARGS=%CMAKE_ARGS: -A x64=%"
-
 @REM pushd libcifpp
 @REM cmake -S . -B build %CMAKE_ARGS% ^
 @REM     -DCMAKE_INSTALL_PREFIX=%PREFIX%/libcifpp
