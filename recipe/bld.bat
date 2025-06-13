@@ -1,6 +1,7 @@
 @echo on
 
 set CMAKE_GENERATOR=Ninja
+set "CMAKE_ARGS=%CMAKE_ARGS: -A x64=%"
 
 @REM pushd libcifpp
 @REM cmake -S . -B build %CMAKE_ARGS% ^
@@ -18,7 +19,6 @@ set CMAKE_GENERATOR=Ninja
 
 pushd dssp
 cmake -S . -B build %CMAKE_ARGS% ^
-    -DCMAKE_INSTALL_PREFIX="%PREFIX%" ^
     -DCMAKE_CXX_FLAGS="%CXXFLAGS%" ^
     -DINSTALL_LIBRARY=ON ^
     -DBUILD_PYTHON_MODULE=ON ^
