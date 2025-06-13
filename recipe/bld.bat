@@ -2,26 +2,27 @@
 
 set CMAKE_GENERATOR=Ninja
 
-pushd libcifpp
-cmake -S . -B build %CMAKE_ARGS% ^
-    -DCMAKE_INSTALL_PREFIX=%PREFIX%/libcifpp
-cmake --build build --config Release --parallel %CPU_COUNT%
-cmake --install build
-popd
+@REM pushd libcifpp
+@REM cmake -S . -B build %CMAKE_ARGS% ^
+@REM     -DCMAKE_INSTALL_PREFIX=%PREFIX%/libcifpp
+@REM cmake --build build --config Release --parallel %CPU_COUNT%
+@REM cmake --install build
+@REM popd
 
-pushd libmcfp
-cmake -S . -B build %CMAKE_ARGS% ^
-    -DCMAKE_INSTALL_PREFIX=%PREFIX%/libmcfp
-cmake --build build --config Release --parallel %CPU_COUNT%
-cmake --install build
-popd
+@REM pushd libmcfp
+@REM cmake -S . -B build %CMAKE_ARGS% ^
+@REM     -DCMAKE_INSTALL_PREFIX=%PREFIX%/libmcfp
+@REM cmake --build build --config Release --parallel %CPU_COUNT%
+@REM cmake --install build
+@REM popd
 
 pushd dssp
 cmake -S . -B build %CMAKE_ARGS% ^
     -DINSTALL_LIBRARY=ON ^
     -DBUILD_PYTHON_MODULE=ON ^
-    -Dcifpp_DIR="%PREFIX%/libcifpp/lib/cmake/cifpp" ^
-    -Dlibmcfp_DIR="%PREFIX%/libmcfp/lib/cmake/libmcfp"
+    -DCIFPP_SHARE_DIR="%PREFIX%/share/libcifpp"
+    @REM -Dcifpp_DIR="%PREFIX%/libcifpp/lib/cmake/cifpp" ^
+    @REM -Dlibmcfp_DIR="%PREFIX%/libmcfp/lib/cmake/libmcfp"
 cmake --build build --config Release --parallel %CPU_COUNT%
 cmake --install build
 popd
