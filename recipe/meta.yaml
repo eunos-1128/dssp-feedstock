@@ -40,12 +40,10 @@ test:
     - grep  # [unix]
     - pip
   imports:
-    - mkdssp  # [unix]
+    - mkdssp
   commands:
-    - mkdssp --version  # [unix]
-    - mkdssp --help  # [unix]
-    - mkdssp.exe --version  # [win]
-    - mkdssp.exe --help  # [win]
+    - mkdssp --version
+    - mkdssp --help
     - pip check
   source_files:
     - dssp/test/1cbs.cif.gz
