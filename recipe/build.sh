@@ -6,6 +6,7 @@ export CMAKE_GENERATOR=Ninja
 
 if [[ "$target_platform" == "osx-x86_64" ]]; then
     export MACOSX_DEPLOYMENT_TARGET="10.15"
+    export CXXFLAGS="${CXXFLAGS} -mmacosx-version-min=10.15"
 elif [[ "$target_platform" == "osx-arm64" ]]; then
     ATOMIC_BUILTIN_FLAG="-D_CXX_ATOMIC_BUILTIN_EXITCODE=0"
 fi
@@ -35,7 +36,7 @@ cmake -S . -B build ${CMAKE_ARGS} \
     -DBUILD_PYTHON_MODULE=ON \
     -Dcifpp_DIR="${PREFIX}/libcifpp/lib/cmake/cifpp" \
     -Dmcfp_DIR="${PREFIX}/libmcfp/lib/cmake/libmcfp" \
-    -DCIFPP_SHARE_DIR="${PREFIX}/share/libcifpp" \
+    -DCIFPP_SHARE_DIR="${PREFIX}/libcifpp/share/libcifpp" \
     ${ATOMIC_BUILTIN_FLAG}
 cmake --build build --config Release --parallel "${CPU_COUNT}"
 cmake --install build
