@@ -30,6 +30,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -Command ^
 cmake -S . -B build %CMAKE_ARGS% ^
     -DCMAKE_CXX_FLAGS="%CXXFLAGS%" ^
     -DINSTALL_LIBRARY=ON ^
+    -DBUILD_TESTING=OFF ^
     -DBUILD_PYTHON_MODULE=ON ^
     -DCIFPP_SHARE_DIR="%PREFIX%/share/libcifpp"
     @REM -Dcifpp_DIR="%PREFIX%/libcifpp/lib/cmake/cifpp" ^
