@@ -4,10 +4,12 @@ set -exo pipefail
 
 export CMAKE_GENERATOR=Ninja
 
-if [[ "$target_platform" == "osx-x86_64" ]]; then
+if [[ "$OSX_ARCH" == "x86_64" ]]; then
     export MACOSX_DEPLOYMENT_TARGET="10.15"
     export CXXFLAGS="${CXXFLAGS} -mmacosx-version-min=10.15"
-elif [[ "$target_platform" == "osx-arm64" ]]; then
+fi
+
+if [[ "$target_platform" == "osx-arm64" ]]; then
     ATOMIC_BUILTIN_FLAG="-D_CXX_ATOMIC_BUILTIN_EXITCODE=0"
 fi
 
