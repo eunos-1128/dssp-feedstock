@@ -15,6 +15,14 @@
 @REM popd
 
 pushd dssp
+
+powershell -NoProfile -ExecutionPolicy Bypass -Command ^
+    "$file = '%FILE%';" ^
+    "(Get-Content -Raw $file) " ^
+    "-replace 'install\\(TARGETS mkdssp_module RUNTIME DESTINATION \"\\$\\{Python_SITELIB\\}\"\\)'," ^
+    " 'install(TARGETS mkdssp_module RUNTIME DESTINATION \"${CMAKE_INSTALL_PREFIX}/Lib/site-packages\")' " ^
+    "| Set-Content -NoNewline -Path $file"
+
 cmake -S . -B build %CMAKE_ARGS% ^
     -DCMAKE_CXX_FLAGS="%CXXFLAGS%" ^
     -DINSTALL_LIBRARY=ON ^
