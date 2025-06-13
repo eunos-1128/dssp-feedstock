@@ -34,6 +34,7 @@ sed -i.bak \
 
 cmake -S . -B build ${CMAKE_ARGS} \
     -DCMAKE_CXX_FLAGS="${CXXFLAGS}" \
+    -DCMAKE_OSX_DEPLOYMENT_TARGET="${MACOSX_DEPLOYMENT_TARGET}" \
     -DINSTALL_LIBRARY=ON \
     -DBUILD_PYTHON_MODULE=ON \
     -DCIFPP_SHARE_DIR="${PREFIX}/share/libcifpp" \
