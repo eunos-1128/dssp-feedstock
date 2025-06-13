@@ -40,7 +40,7 @@ test:
     - grep  # [unix]
     - pip
   imports:
-    - mkdssp
+    - mkdssp  # [unix]
   commands:
     - mkdssp --version
     - mkdssp --help
