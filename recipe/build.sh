@@ -21,9 +21,6 @@ fi
 # popd
 
 pushd dssp
-sed -i.bak \
-  's|option(USE_RSRC "Use mrc to create resources" ON)|option(USE_RSRC "Use mrc to create resources" OFF)|' \
-  CMakeLists.txt
 
 cmake -S . -B build ${CMAKE_ARGS} \
     -DCMAKE_CXX_FLAGS="${CXXFLAGS}" \
