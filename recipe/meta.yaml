@@ -18,10 +18,8 @@ requirements:
   build:
     - {{ compiler("cxx") }}
     - {{ stdlib("c") }}
-    - cross-python_{{ target_platform }}  # [build_platform != target_platform]
     - cmake
     - make  # [unix]
-    - python  # [build_platform != target_platform]
   host:
     - bzip2
     - eigen
@@ -29,8 +27,6 @@ requirements:
     - libboost-python-devel >=1.86.0,<1.87.0
     - python
     - zlib
-  run:
-    - python
 
 test:
   requires:
