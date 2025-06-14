@@ -31,13 +31,11 @@ requirements:
 test:
   requires:
     - grep  # [unix]
-    - pip
   imports:
     - mkdssp  # [not win]
   commands:
     - mkdssp --version
     - mkdssp --help
-    - pip check
   source_files:
     - test/1cbs.cif.gz
 
