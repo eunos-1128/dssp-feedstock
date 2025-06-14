@@ -29,8 +29,6 @@ requirements:
 test:
   requires:
     - grep  # [unix]
-  imports:
-    - mkdssp  # [not win]
   commands:
     - mkdssp --version
     - mkdssp --help
