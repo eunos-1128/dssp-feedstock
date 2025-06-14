@@ -25,7 +25,6 @@ requirements:
     - eigen
     - icu
     - libboost-python-devel >=1.86.0,<1.87.0
-    - python
     - zlib
 
 test:
