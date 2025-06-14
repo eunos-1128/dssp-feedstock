@@ -8,7 +8,6 @@ cxx_compiler:              # [linux]
   - clangxx                # [linux]
 cxx_compiler_version:      # [linux]
   - 18                     # [linux]
-
 MACOSX_DEPLOYMENT_TARGET:  # [osx and x86_64]
   - 10.15                  # [osx and x86_64]
 c_stdlib_version:          # [osx and x86_64]
