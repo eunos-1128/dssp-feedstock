@@ -2,9 +2,7 @@
 
 set -exo pipefail
 
-if [[ "${OSX_ARCH}" == "x86_64" ]]; then
-    export CXXFLAGS="${CXXFLAGS} -mmacosx-version-min=10.15"
-elif [[ "$target_platform" == "osx-arm64" ]]; then
+if [[ "$target_platform" == "osx-arm64" ]]; then
     export ATOMIC_BUILTIN_FLAG="-D_CXX_ATOMIC_BUILTIN_EXITCODE=0"
 fi
 
