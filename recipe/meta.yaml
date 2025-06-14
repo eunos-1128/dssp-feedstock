@@ -39,7 +39,7 @@ test:
     - grep  # [unix]
     - pip
   imports:
-    - mkdssp
+    - mkdssp  # [not win]
   commands:
     - mkdssp --version
     - mkdssp --help
