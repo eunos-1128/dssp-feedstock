@@ -2,6 +2,7 @@
 
 @REM Define the relative path to the CMakeLists.txt file we want to patch
 set "FILE=python-module\CMakeLists.txt"
+if errorlevel 1 exit 1
 
 @REM Adjust the install() destination to use CMAKE_INSTALL_PREFIX/Lib/site-packages
 @REM After find_package(Python3 ...), inject logic to override Python library names on Windows/MSVC
@@ -10,6 +11,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -Command ^
     "-replace 'install\\(TARGETS mkdssp_module RUNTIME DESTINATION \"\\$\\{Python_SITELIB\\}\"\\)', 'install(TARGETS mkdssp_module RUNTIME DESTINATION \"${CMAKE_INSTALL_PREFIX}/Lib/site-packages\")' " ^
     "-replace 'find_package\\(Python3 REQUIRED COMPONENTS Interpreter Development\\)', 'find_package(Python3 REQUIRED COMPONENTS Interpreter Development)`nif (WIN32 AND MSVC)`n  set(Python3_LIBRARY_DEBUG   \"${CMAKE_INSTALL_PREFIX}/Library/libs/python313.lib\" CACHE FILEPATH \"\" FORCE)`n  set(Python3_LIBRARY_RELEASE \"${CMAKE_INSTALL_PREFIX}/Library/libs/python313.lib\" CACHE FILEPATH \"\" FORCE)`nendif()' " ^
     "| Set-Content -NoNewline -Path '%FILE%'"
+if errorlevel 1 exit 1
 
 cmake -S . -B build %CMAKE_ARGS% ^
     -DCMAKE_CXX_FLAGS="%CXXFLAGS%" ^
@@ -17,5 +19,10 @@ cmake -S . -B build %CMAKE_ARGS% ^
     -DBUILD_TESTING=OFF ^
     -DBUILD_PYTHON_MODULE=ON ^
     -DCIFPP_SHARE_DIR="%PREFIX%/share/libcifpp"
+if errorlevel 1 exit 1
+
 cmake --build build --config Release --parallel %CPU_COUNT%
+if errorlevel 1 exit 1
+
 cmake --install build
+if errorlevel 1 exit 1
