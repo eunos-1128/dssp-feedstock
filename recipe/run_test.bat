@@ -1,8 +1,5 @@
 @echo on
 
-set "LIBCIFPP_DATA_DIR=%PREFIX%\share\libcifpp"
-if errorlevel 1 exit 1
-
 cd test
 if errorlevel 1 exit 1
 

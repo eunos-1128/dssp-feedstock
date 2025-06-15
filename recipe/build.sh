@@ -11,7 +11,7 @@ cmake -S . -B build ${CMAKE_ARGS} \
     -DCMAKE_CXX_STANDARD=20 \
     -DBUILD_TESTING=OFF \
     -DINSTALL_LIBRARY=ON \
-    -DCMAKE_INSTALL_FULL_DATADIR="${PREFIX}/share" \
+    -DCIFPP_DATA_DIR='' \
     -DCIFPP_SHARE_DIR="${PREFIX}/share/libcifpp" \
     ${ATOMIC_BUILTIN_FLAG}
 cmake --build build --config Release --parallel "${CPU_COUNT}"
