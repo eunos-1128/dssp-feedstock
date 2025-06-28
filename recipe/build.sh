@@ -16,3 +16,9 @@ cmake -S . -B build ${CMAKE_ARGS} \
     ${ATOMIC_BUILTIN_FLAG}
 cmake --build build --config Release --parallel "${CPU_COUNT}"
 cmake --install build
+
+# activaton and deactivation scripts
+mkdir -p "${PREFIX}/etc/conda/activate.d"
+mkdir -p "${PREFIX}/etc/conda/deactivate.d"
+cp -f "${RECIPE_DIR}/activate.sh" "${PREFIX}/etc/conda/activate.d/env_vars.sh"
+cp -f "${RECIPE_DIR}/deactivate.sh" "${PREFIX}/etc/conda/deactivate.d/env_vars.sh"
