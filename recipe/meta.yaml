@@ -21,7 +21,7 @@ requirements:
     - cmake
     - make  # [unix]
   host:
-    - libboost-devel # [linux]
+    - libboost-devel  # [linux]
     - bzip2
     - eigen
     - icu
