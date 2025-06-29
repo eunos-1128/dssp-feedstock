@@ -54,7 +54,6 @@ about:
   repository: https://github.com/PDB-REDO/dssp
   documentation: https://github.com/PDB-REDO/dssp/blob/trunk/doc/mkdssp.md
   license: BSD-2-Clause
-  license_family: BSD
   license_file: LICENSE
   summary: "Application to assign secondary structure to proteins"
   description: >
