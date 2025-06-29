@@ -49,7 +49,6 @@ tests:
       source:
         - tests/data/1cbs.cif.gz
 
-
 about:
   homepage: https://pdb-redo.eu/dssp
   repository: https://github.com/PDB-REDO/dssp
