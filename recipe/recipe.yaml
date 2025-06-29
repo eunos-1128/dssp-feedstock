@@ -47,7 +47,7 @@ tests:
           then: grep
     files:
       source:
-        - tests/data/1cbs.cif.gz
+        - test/data/1cbs.cif.gz
 
 about:
   homepage: https://pdb-redo.eu/dssp
