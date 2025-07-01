@@ -27,7 +27,7 @@ requirements:
     - if: build_platform != target_platform
       then: python
   host:
-    - if: linux
+    - if: not osx
       then: libboost-devel
     - libboost-python-devel
     - bzip2
