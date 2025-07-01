@@ -49,11 +49,15 @@ tests:
         then: run_test.sh
       - if: win
         then: run_test.bat
-      - run_test.py
     requirements:
       run:
         - if : unix
           then: grep
+    files:
+      source:
+        - test/1cbs.cif.gz
+
+  - script: run_test.py
     files:
       source:
         - test/1cbs.cif.gz
