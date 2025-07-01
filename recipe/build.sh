@@ -9,12 +9,12 @@ fi
 cmake -S . -B build ${CMAKE_ARGS} \
     -DCMAKE_CXX_FLAGS="${CXXFLAGS}" \
     -DCMAKE_CXX_STANDARD=20 \
-    -DPython_SITEARCH="${SP_DIR}" \
     -DBUILD_TESTING=OFF \
     -DINSTALL_LIBRARY=ON \
     -DBUILD_PYTHON_MODULE=ON \
     -DCIFPP_DATA_DIR='' \
     -DCIFPP_SHARE_DIR="${PREFIX}/share/libcifpp" \
+    -DPYTHON_SITE_PACKAGES="${SP_DIR}" \
     ${ATOMIC_BUILTIN_FLAG}
 cmake --build build --config Release --parallel "${CPU_COUNT}"
 cmake --install build
