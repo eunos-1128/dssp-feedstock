@@ -27,8 +27,7 @@ requirements:
     - if: build_platform != target_platform
       then: python
   host:
-    - if: not osx
-      then: libboost-devel
+    - libboost-devel
     - libboost-python-devel
     - bzip2
     - eigen
