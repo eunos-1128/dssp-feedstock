@@ -1,13 +1,17 @@
 @echo on
 
 cmake -S . -B build %CMAKE_ARGS% ^
-    -DCMAKE_CXX_FLAGS="%CXXFLAGS%" ^
+    -DCMAKE_CXX_FLAGS="%CXXFLAGS% /EHsc" ^
     -DCMAKE_CXX_STANDARD=20 ^
     -DBUILD_TESTING=OFF ^
     -DINSTALL_LIBRARY=ON ^
     -DBUILD_PYTHON_MODULE=ON ^
     -DCIFPP_DATA_DIR='' ^
-    -DCIFPP_SHARE_DIR="%PREFIX%/share/libcifpp"
+    -DCIFPP_SHARE_DIR="%PREFIX%/share/libcifpp" ^
+    -DBOOST_ALL_NO_LIB=OFF ^
+    -DBOOST_AUTO_LINK_TAGGED=ON ^
+    -DCMAKE_EXE_LINKER_FLAGS="/FORCE:MULTIPLE" ^
+    -DCMAKE_SHARED_LINKER_FLAGS="/FORCE:MULTIPLE"
 if errorlevel 1 exit 1
 
 cmake --build build --config Release --parallel %CPU_COUNT%
