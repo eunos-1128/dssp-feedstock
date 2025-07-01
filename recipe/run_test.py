@@ -1,12 +1,12 @@
 import gzip
 
-from mkdssp import dssp
+import mkdssp
 
 
 with gzip.open("test/1cbs.cif.gz", "rt") as f:
     file_content = f.read()
 
-dssp = dssp(file_content)
+dssp = mkdssp.dssp(file_content)
 
 print("residues: ", dssp.statistics.residues)
 
