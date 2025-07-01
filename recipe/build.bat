@@ -8,6 +8,7 @@ cmake -S . -B build %CMAKE_ARGS% ^
     -DBUILD_PYTHON_MODULE=ON ^
     -DCIFPP_DATA_DIR='' ^
     -DCIFPP_SHARE_DIR="%PREFIX%/share/libcifpp" ^
+    -DPython3_SITELIB="%SP_DIR%" ^
     -DBOOST_ALL_NO_LIB=OFF ^
     -DBOOST_AUTO_LINK_TAGGED=ON ^
     -DCMAKE_EXE_LINKER_FLAGS="/FORCE:MULTIPLE" ^

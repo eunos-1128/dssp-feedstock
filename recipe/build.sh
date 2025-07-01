@@ -14,6 +14,7 @@ cmake -S . -B build ${CMAKE_ARGS} \
     -DBUILD_PYTHON_MODULE=ON \
     -DCIFPP_DATA_DIR='' \
     -DCIFPP_SHARE_DIR="${PREFIX}/share/libcifpp" \
+    -DPython3_SITELIB="${SP_DIR}" \
     ${ATOMIC_BUILTIN_FLAG}
 cmake --build build --config Release --parallel "${CPU_COUNT}"
 cmake --install build
