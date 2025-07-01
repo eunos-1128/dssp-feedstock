@@ -49,6 +49,7 @@ tests:
         then: run_test.sh
       - if: win
         then: run_test.bat
+      - run_test.py
     requirements:
       run:
         - if : unix
@@ -56,11 +57,6 @@ tests:
     files:
       source:
         - test/1cbs.cif.gz
-
-  - python:
-      imports:
-        - mkdssp
-      pip_check: true
 
 about:
   homepage: https://pdb-redo.eu/dssp
