@@ -1,0 +1,69 @@
+context:
+  name: DSSP
+  version: "4.5.3"
+  sha256: 8dd92fdf2a252a170c8a811e3adb752e0f2860318ecb2b6ed5e4fd1d2b5ce5e6
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/PDB-REDO/${{ name|lower }}/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: ${{ sha256 }}
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler("cxx") }}
+    - ${{ stdlib("c") }}
+    - cmake
+    - if: unix
+      then: make
+  host:
+    - if: linux
+      then: libboost-devel
+    - bzip2
+    - eigen
+    - icu
+    - zlib
+  run_exports:
+    - ${{ pin_subpackage(name|lower, upper_bound="x.x") }}
+
+tests:
+  - script:
+      - mkdssp --version
+      - mkdssp --help
+
+  - script:
+      - if: unix
+        then: run_test.sh
+      - if: win
+        then: run_test.bat
+    requirements:
+      run:
+        - if : unix
+          then: grep
+    files:
+      source:
+        - test/1cbs.cif.gz
+
+about:
+  homepage: https://pdb-redo.eu/dssp
+  repository: https://github.com/PDB-REDO/dssp
+  documentation: https://github.com/PDB-REDO/dssp/blob/trunk/doc/mkdssp.md
+  license: BSD-2-Clause
+  license_file: LICENSE
+  summary: "Application to assign secondary structure to proteins"
+  description: >
+    DSSP (Define Secondary Structure of Proteins) is a program that assigns
+    secondary structure to proteins based on their 3D structure.
+
+    It is widely used in structural biology and bioinformatics for analyzing protein
+    structures.
+
+extra:
+  recipe-maintainers:
+    - padix-key
+    - mhekkel

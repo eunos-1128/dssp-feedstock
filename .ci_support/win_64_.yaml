@@ -1,3 +1,5 @@
+bzip2:
+- '1'
 c_stdlib:
 - vs
 channel_sources:
@@ -5,7 +7,9 @@ channel_sources:
 channel_targets:
 - conda-forge main
 cxx_compiler:
-- vs2019
+- vs2022
+icu:
+- '73'
 target_platform:
 - win-64
 zlib:
