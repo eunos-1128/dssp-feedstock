@@ -6,10 +6,6 @@ if [[ "$target_platform" == "osx-arm64" ]]; then
     export ATOMIC_BUILTIN_FLAG="-D_CXX_ATOMIC_BUILTIN_EXITCODE=0"
 fi
 
-sed -i.bak \
-    's|optional<int, int, bool>|boost::python::optional<int, int, bool>|' \
-    python-module/dssp-python-plugin.cpp
-
 cmake -S . -B build \
     ${CMAKE_ARGS} \
     -DCMAKE_PREFIX_PATH="${PREFIX}" \
