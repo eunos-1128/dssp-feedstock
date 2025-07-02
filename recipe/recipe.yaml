@@ -59,13 +59,10 @@ tests:
       source:
         - test/1cbs.cif.gz
 
-  - script:
-      - cd python-module
-      - python test-mkdssp.py
-    files:
-      source:
-        - python-module/test-mkdssp.py
-        - test/1cbs.cif.gz
+  - python:
+      imports:
+        - mkdssp
+      pip_check: true
 
 about:
   homepage: https://pdb-redo.eu/dssp
