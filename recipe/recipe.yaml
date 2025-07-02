@@ -57,9 +57,12 @@ tests:
       source:
         - test/1cbs.cif.gz
 
-  - script: run_test.py
+  - script:
+      - cd python-module
+      - python test-mkdssp.py
     files:
       source:
+        - python-module/test-mkdssp.py
         - test/1cbs.cif.gz
 
 about:
