@@ -2,7 +2,7 @@
 
 set -exo pipefail
 
-if [[ "$target_platform" == "osx-"* ]]; then
+if [[ "$target_platform" == "osx-arm64" ]]; then
     export ATOMIC_BUILTIN_FLAG="-D_CXX_ATOMIC_BUILTIN_EXITCODE=0"
 fi
 
