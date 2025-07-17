@@ -14,8 +14,9 @@ cmake -S . -B build \
     -DINSTALL_LIBRARY=ON \
     -DBUILD_PYTHON_MODULE=ON \
     -DPython_ROOT_DIR="${PREFIX}" \
-    -DCIFPP_DATA_DIR="${PREFIX}/share/libcifpp" \
     -DCIFPP_SHARE_DIR="${PREFIX}/share/libcifpp" \
+    -Dcifpp_DIR="${PREFIX}/lib/cmake/cifpp" \
+    -Dmcfp_DIR="${PREFIX}/lib/cmake/mcfp" \
     "${ATOMIC_BUILTIN_FLAG}"
 cmake --build build --config Release --parallel "${CPU_COUNT}"
 cmake --install build
