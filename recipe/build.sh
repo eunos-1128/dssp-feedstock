@@ -22,7 +22,6 @@ cmake -S . -B build \
 cmake --build build --config Release --parallel "${CPU_COUNT}"
 cmake --install build
 
-
 if [[ "${target_platform}" == "linux-ppc64le" ]]; then
     # activaton and deactivation scripts
     mkdir -p "${PREFIX}/etc/conda/activate.d"
