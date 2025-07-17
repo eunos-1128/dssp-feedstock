@@ -31,7 +31,11 @@ requirements:
     - libboost-python-devel
     - bzip2
     - eigen
-    - icu >=75.1,<76.0a0
+    - icu
+    - if: unix
+      then:
+        - libcifpp
+        - libmcfp
     - python ${{ python }}
     - zlib
   run:
