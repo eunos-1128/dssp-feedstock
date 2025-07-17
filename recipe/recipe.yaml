@@ -32,10 +32,10 @@ requirements:
     - bzip2
     - eigen
     - icu
-    - if: unix
-      then:
-        - libcifpp
-        - libmcfp
+    # libcifpp bioconda package is not provided for windows and linux-ppc64le
+    - if: unix and not ppc64le
+      then: libcifpp
+    - libmcfp
     - python ${{ python }}
     - zlib
   run:
