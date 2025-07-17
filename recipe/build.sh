@@ -6,8 +6,10 @@ if [[ "$build_platform" != "$target_platform" ]]; then
     export ATOMIC_BUILTIN_FLAG="-D_CXX_ATOMIC_BUILTIN_EXITCODE=0"
 fi
 
-# Workaround due to `CIFPP_DATA_DIR` set to an empty string in libcifpp conda package
-sed -i.bak 's|${CIFPP_DATA_DIR}/mmcif_pdbx.dic|$ENV{PREFIX}/share/libcifpp/mmcif_pdbx.dic|g' CMakeLists.txt
+if [[ "${target_platform}" != "linux-ppc64le" ]]; then
+    # Workaround due to `CIFPP_DATA_DIR` set to an empty string in libcifpp conda package
+    sed -i.bak 's|${CIFPP_DATA_DIR}/mmcif_pdbx.dic|$ENV{PREFIX}/share/libcifpp/mmcif_pdbx.dic|g' CMakeLists.txt
+fi
 
 cmake -S . -B build \
     ${CMAKE_ARGS} \
