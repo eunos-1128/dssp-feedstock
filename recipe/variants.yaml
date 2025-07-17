@@ -2,6 +2,9 @@ c_stdlib_version:
   - if: osx and x86_64
     then: 10.15
 
+icu:
+  - '75'
+
 channel_sources:
   - if: unix
     then: conda-forge,bioconda
