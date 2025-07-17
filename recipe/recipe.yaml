@@ -2,7 +2,7 @@ context:
   name: DSSP
   version: "4.5.3"
   sha256: 8dd92fdf2a252a170c8a811e3adb752e0f2860318ecb2b6ed5e4fd1d2b5ce5e6
-  build_number: 2
+  build_number: 3
 
 package:
   name: ${{ name|lower }}
@@ -31,7 +31,11 @@ requirements:
     - libboost-python-devel
     - bzip2
     - eigen
-    - icu >=75.1,<76.0a0
+    - icu
+    # libcifpp bioconda package is not provided for windows and linux-ppc64le
+    - if: unix and not ppc64le
+      then: libcifpp
+    - libmcfp
     - python ${{ python }}
     - zlib
   run:
