@@ -3,7 +3,7 @@ c_stdlib_version:
     then: 10.15
 
 icu:
-  - '75'
+  - 75
 
 channel_sources:
   - if: unix
