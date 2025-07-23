@@ -30,6 +30,6 @@ if [[ "${target_platform}" == "linux-ppc64le" ]]; then
     # activaton and deactivation scripts
     mkdir -p "${PREFIX}/etc/conda/activate.d"
     mkdir -p "${PREFIX}/etc/conda/deactivate.d"
-    cp -f "${RECIPE_DIR}/activate.sh" "${PREFIX}/etc/conda/activate.d/env_vars.sh"
-    cp -f "${RECIPE_DIR}/deactivate.sh" "${PREFIX}/etc/conda/deactivate.d/env_vars.sh"
+    install -m 644 "${RECIPE_DIR}/activate.sh" "${PREFIX}/etc/conda/activate.d/env_vars.sh"
+    install -m 644 "${RECIPE_DIR}/deactivate.sh" "${PREFIX}/etc/conda/deactivate.d/env_vars.sh"
 fi
