@@ -6,6 +6,10 @@ if [[ "$build_platform" != "$target_platform" ]]; then
     EXTRA_CMAKE_ARGS="-D_CXX_ATOMIC_BUILTIN_EXITCODE=0"
 fi
 
+if [[ "$target_platform" == "osx-"* ]]; then
+    EXTRA_CMAKE_ARGS="-D_LIBCPP_DISABLE_NEW_CHARCONV=1 ${EXTRA_CMAKE_ARGS}"
+fi
+
 cmake -S . -B build \
     ${CMAKE_ARGS} \
     -DCMAKE_PREFIX_PATH="${PREFIX}" \
