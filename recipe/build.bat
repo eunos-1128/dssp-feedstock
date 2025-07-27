@@ -9,6 +9,8 @@ cmake -S . -B build ^
     -DINSTALL_LIBRARY=ON ^
     -DBUILD_PYTHON_MODULE=ON ^
     -DPython_ROOT_DIR="%PREFIX%" ^
+    -DCIFPP_DOWNLOAD_CCD=ON ^
+    -DCIFPP_INSTALL_UPDATE_SCRIPT=OFF ^
     -DCIFPP_DATA_DIR='' ^
     -DCIFPP_SHARE_DIR="%PREFIX%/share/libcifpp" ^
     -DBOOST_ALL_NO_LIB=OFF ^
