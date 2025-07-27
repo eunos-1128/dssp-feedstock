@@ -3,7 +3,7 @@
 set -exo pipefail
 
 if [[ "$build_platform" != "$target_platform" ]]; then
-    export ATOMIC_BUILTIN_FLAG="-D_CXX_ATOMIC_BUILTIN_EXITCODE=0"
+    EXTRA_CMAKE_ARGS="-D_CXX_ATOMIC_BUILTIN_EXITCODE=0"
 fi
 
 cmake -S . -B build \
@@ -20,7 +20,7 @@ cmake -S . -B build \
     -DCIFPP_INSTALL_UPDATE_SCRIPT=OFF \
     -DCIFPP_DATA_DIR='' \
     -DCIFPP_SHARE_DIR="${PREFIX}/share/libcifpp" \
-    ${ATOMIC_BUILTIN_FLAG}
+    ${EXTRA_CMAKE_ARGS}
 cmake --build build --config Release --parallel "${CPU_COUNT}"
 cmake --install build
 
