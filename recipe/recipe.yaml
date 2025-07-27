@@ -2,7 +2,7 @@ context:
   name: DSSP
   version: "4.5.3"
   sha256: 8dd92fdf2a252a170c8a811e3adb752e0f2860318ecb2b6ed5e4fd1d2b5ce5e6
-  build_number: 2
+  build_number: 6
 
 package:
   name: ${{ name|lower }}
@@ -19,19 +19,20 @@ requirements:
   build:
     - ${{ compiler("cxx") }}
     - if: build_platform != target_platform
-      then: cross-python_${{ target_platform }}
+      then:
+        - cross-python_${{ target_platform }}
+        - python
     - ${{ stdlib("c") }}
     - cmake
     - if: unix
       then: make
-    - if: build_platform != target_platform
-      then: python
   host:
     - libboost-devel
     - libboost-python-devel
     - bzip2
     - eigen
     - icu >=75.1,<76.0a0
+    - libmcfp
     - python ${{ python }}
     - zlib
   run:
