@@ -7,7 +7,7 @@ if [[ "$build_platform" != "$target_platform" ]]; then
 fi
 
 if [[ "$target_platform" == "osx-"* ]]; then
-    EXTRA_CMAKE_ARGS="-D_LIBCPP_DISABLE_NEW_CHARCONV=1 ${EXTRA_CMAKE_ARGS}"
+    export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
 fi
 
 cmake -S . -B build \
