@@ -1,5 +1,6 @@
 @echo on
 
+@REM Refer to https://github.com/conda-forge/dssp-feedstock/pull/14#issuecomment-2974049079 for `-DCIFPP_DATA_DIR=''`
 cmake -S . -B build ^
     %CMAKE_ARGS% ^
     -DCMAKE_PREFIX_PATH="%PREFIX%" ^
@@ -23,6 +24,9 @@ cmake --build build --config Release --parallel %CPU_COUNT%
 if errorlevel 1 exit 1
 
 cmake --install build
+if errorlevel 1 exit 1
+
+copy /Y "%SRC_DIR%\build\_deps\cifpp-src\rsrc\*.*" "%PREFIX%\share\libcifpp\"
 if errorlevel 1 exit 1
 
 @REM activaton and deactivation scripts for Windows

@@ -2,7 +2,7 @@ context:
   name: DSSP
   version: "4.5.3"
   sha256: 8dd92fdf2a252a170c8a811e3adb752e0f2860318ecb2b6ed5e4fd1d2b5ce5e6
-  build_number: 6
+  build_number: 7
 
 package:
   name: ${{ name|lower }}
@@ -32,6 +32,9 @@ requirements:
     - bzip2
     - eigen
     - icu
+    # Refer to https://github.com/conda-forge/dssp-feedstock/issues/31 for this commentout
+    # libcifpp is fetched and statically linked during building.
+    # - bioconda::libcifpp
     - libmcfp
     - python ${{ python }}
     - zlib
@@ -70,7 +73,7 @@ about:
   license: BSD-2-Clause
   license_file: LICENSE
   summary: "Application to assign secondary structure to proteins"
-  description: >
+  description: |
     DSSP (Define Secondary Structure of Proteins) is a program that assigns
     secondary structure to proteins based on their 3D structure.
 

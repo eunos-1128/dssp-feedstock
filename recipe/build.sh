@@ -10,6 +10,7 @@ if [[ "$target_platform" == "osx-"* ]]; then
     export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
 fi
 
+# Refer to https://github.com/conda-forge/dssp-feedstock/pull/14#issuecomment-2974049079 for `-DCIFPP_DATA_DIR=''`
 cmake -S . -B build \
     ${CMAKE_ARGS} \
     -DCMAKE_PREFIX_PATH="${PREFIX}" \
@@ -26,6 +27,7 @@ cmake -S . -B build \
     ${EXTRA_CMAKE_ARGS}
 cmake --build build --config Release --parallel "${CPU_COUNT}"
 cmake --install build
+cp -f "${SRC_DIR}/build/_deps/cifpp-src/rsrc/"* "${PREFIX}/share/libcifpp/"
 
 # activaton and deactivation scripts
 mkdir -p "${PREFIX}/etc/conda/activate.d"
