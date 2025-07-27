@@ -9,15 +9,13 @@ c_stdlib:
 c_stdlib_version:
 - '10.15'
 channel_sources:
-- conda-forge,bioconda
+- conda-forge
 channel_targets:
 - conda-forge main
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '19'
-icu:
-- 75
+- '18'
 libboost_devel:
 - '1.86'
 libboost_python_devel:
