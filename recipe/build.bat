@@ -32,6 +32,6 @@ if errorlevel 1 exit 1
 @REM activaton and deactivation scripts for Windows
 mkdir "%PREFIX%\etc\conda\activate.d" 2>nul
 mkdir "%PREFIX%\etc\conda\deactivate.d" 2>nul
-copy /Y "%RECIPE_DIR%\activate.bat" "%PREFIX%\etc\conda\activate.d\env_vars.bat"
-copy /Y "%RECIPE_DIR%\deactivate.bat" "%PREFIX%\etc\conda\deactivate.d\env_vars.bat"
+copy /Y "%RECIPE_DIR%\activate.bat" "%PREFIX%\etc\conda\activate.d\dssp_activate.bat"
+copy /Y "%RECIPE_DIR%\deactivate.bat" "%PREFIX%\etc\conda\deactivate.d\dssp_deactivate.bat"
 if errorlevel 1 exit 1
