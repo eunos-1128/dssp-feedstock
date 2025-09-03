@@ -1,7 +1,7 @@
 context:
   name: DSSP
-  version: "4.5.5"
-  sha256: 68bda916ade0bcb439929069b306788b389c4edfbe8b933dd32218d4124b5104
+  version: "4.5.6"
+  sha256: 940062a5c97be30546af045020761dbba68d4ca64cbaf2343b3765c0bf1f10b3
   build_number: 0
 
 package:
@@ -26,6 +26,7 @@ requirements:
     - cmake
     - if: unix
       then: make
+    - pkg-config
   host:
     - libboost-devel
     - libboost-python-devel
@@ -36,6 +37,7 @@ requirements:
     # libcifpp is fetched and statically linked during building.
     # - bioconda::libcifpp
     - libmcfp
+    - pcre2
     - python ${{ python }}
     - zlib
   run:
@@ -53,10 +55,6 @@ tests:
         then: run_test.sh
       - if: win
         then: run_test.bat
-    requirements:
-      run:
-        - if: unix
-          then: grep
     files:
       source:
         - test/1cbs.cif.gz
