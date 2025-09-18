@@ -6,7 +6,7 @@ icu:
   - 75
 
 libboost_devel:
-  - 1.87
+  - 1.88
 
 libboost_python_devel:
-  - 1.87
+  - 1.88
