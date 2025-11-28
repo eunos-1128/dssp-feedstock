@@ -27,7 +27,13 @@ cmake -S . -B build \
     ${EXTRA_CMAKE_ARGS}
 cmake --build build --config Release --parallel "${CPU_COUNT}"
 cmake --install build
+
+# Extract components.cif.gz
+# Refer to https://github.com/conda-forge/dssp-feedstock/issues/45
 cp -f "${SRC_DIR}/build/_deps/cifpp-src/rsrc/"* "${PREFIX}/share/libcifpp/"
+if [[ -f "${PREFIX}/share/libcifpp/components.cif.gz" ]]; then
+    gunzip -fk "${PREFIX}/share/libcifpp/components.cif.gz"
+fi
 
 # activaton and deactivation scripts
 mkdir -p "${PREFIX}/etc/conda/activate.d"

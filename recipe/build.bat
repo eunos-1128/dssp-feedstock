@@ -32,6 +32,35 @@ if errorlevel 1 exit 1
 copy /Y "%SRC_DIR%\build\_deps\cifpp-src\rsrc\*.*" "%PREFIX%\share\libcifpp\"
 if errorlevel 1 exit 1
 
+@REM Extract components.cif.gz
+@REM Refer to https://github.com/conda-forge/dssp-feedstock/issues/45
+IF EXIST "%PREFIX%\share\libcifpp\components.cif.gz" (
+    echo Decompressing components. cif.gz -^> components.cif
+    powershell -NoProfile -ExecutionPolicy Bypass -Command ^
+      "& {" ^
+      "  $ErrorActionPreference = 'Stop';" ^
+      "  $InFile = '%PREFIX%\\share\\libcifpp\\components.cif.gz';" ^
+      "  $OutFile = '%PREFIX%\\share\\libcifpp\\components.cif';" ^
+      "  try {" ^
+      "    $FileStream = [System.IO.File]::OpenRead($InFile);" ^
+      "    $GzipStream = [System.IO.Compression.GzipStream]::new($FileStream, [System.IO.Compression. CompressionMode]::Decompress);" ^
+      "    $OutputFileStream = [System.IO. File]::Create($OutFile);" ^
+      "    $GzipStream.CopyTo($OutputFileStream);" ^
+      "  } finally {" ^
+      "    if ($GzipStream) { $GzipStream.Dispose() };" ^
+      "    if ($OutputFileStream) { $OutputFileStream.Dispose() };" ^
+      "    if ($FileStream) { $FileStream.Dispose() };" ^
+      "  }" ^
+      "}"
+    if errorlevel 1 (
+        echo ERROR: Failed to decompress "%PREFIX%\share\libcifpp\components.cif.gz"
+        exit /b 1
+    )
+    echo Successfully decompressed components.cif.gz
+) ELSE (
+    echo "%PREFIX%\share\libcifpp\components.cif.gz" not found, skipping decompression.
+)
+
 @REM activaton and deactivation scripts for Windows
 mkdir "%PREFIX%\etc\conda\activate.d" 2>nul
 mkdir "%PREFIX%\etc\conda\deactivate.d" 2>nul
