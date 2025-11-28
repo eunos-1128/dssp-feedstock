@@ -11,9 +11,9 @@ cxx_compiler:
 icu:
 - 75
 libboost_devel:
-- '1.89'
+- '1.86'
 libboost_python_devel:
-- '1.89'
+- '1.86'
 pcre2:
 - '10.47'
 pin_run_as_build:
