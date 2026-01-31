@@ -13,9 +13,9 @@ fi
 # Refer to https://github.com/conda-forge/dssp-feedstock/pull/14#issuecomment-2974049079 for `-DCIFPP_DATA_DIR=''`
 cmake -S . -B build \
     ${CMAKE_ARGS} \
-    -DCMAKE_PREFIX_PATH="${PREFIX}" \
     -DCMAKE_CXX_FLAGS="${CXXFLAGS}" \
     -DCMAKE_CXX_STANDARD=20 \
+    -DBUILD_SHARED_LIBS=ON \
     -DBUILD_TESTING=OFF \
     -DINSTALL_LIBRARY=ON \
     -DBUILD_PYTHON_MODULE=ON \
