@@ -1,5 +1,9 @@
 @echo on
 
+@REM Enable `find_package` to detect boost on Windows
+sed -i "s#if(NOT WIN32)#if(TRUE)#" python-module/CMakeLists.txt
+sed -i "s#if(WIN32 OR NOT Boost_FOUND)#if(NOT Boost_FOUND)#" python-module/CMakeLists.txt
+
 @REM Refer to https://github.com/conda-forge/dssp-feedstock/pull/14#issuecomment-2974049079 for `-DCIFPP_DATA_DIR=''`
 cmake -S . -B build -G "NMake Makefiles JOM" ^
     %CMAKE_ARGS% ^
