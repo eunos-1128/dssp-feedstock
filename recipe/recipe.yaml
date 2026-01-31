@@ -26,6 +26,8 @@ requirements:
     - cmake
     - if: unix
       then: make
+    - if: win
+      then: jom
     - pkg-config
   host:
     - libboost-devel
