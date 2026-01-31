@@ -62,10 +62,10 @@ IF EXIST "%PREFIX%\share\libcifpp\components.cif.gz" (
 )
 
 @REM activaton and deactivation scripts for Windows
-mkdir "%PREFIX%\etc\conda\activate.d" 2>nul
+if not exist "%PREFIX%\etc\conda\activate.d" mkdir "%PREFIX%\etc\conda\activate.d"
 if errorlevel 1 exit 1
 
-mkdir "%PREFIX%\etc\conda\deactivate.d" 2>nul
+if not exist "%PREFIX%\etc\conda\deactivate.d" mkdir "%PREFIX%\etc\conda\deactivate.d"
 if errorlevel 1 exit 1
 
 copy /Y "%RECIPE_DIR%\activate.bat" "%PREFIX%\etc\conda\activate.d\dssp_activate.bat"
