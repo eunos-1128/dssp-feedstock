@@ -13,11 +13,7 @@ cmake -S . -B build -G "NMake Makefiles JOM" ^
     -DCIFPP_DOWNLOAD_CCD=ON ^
     -DCIFPP_INSTALL_UPDATE_SCRIPT=OFF ^
     -DCIFPP_DATA_DIR='' ^
-    -DCIFPP_SHARE_DIR="%PREFIX%/share/libcifpp" ^
-    -DBOOST_ALL_NO_LIB=OFF ^
-    -DBOOST_AUTO_LINK_TAGGED=ON ^
-    -DCMAKE_EXE_LINKER_FLAGS="/FORCE:MULTIPLE" ^
-    -DCMAKE_SHARED_LINKER_FLAGS="/FORCE:MULTIPLE"
+    -DCIFPP_SHARE_DIR="%PREFIX%/share/libcifpp"
 if errorlevel 1 exit 1
 
 cmake --build build --parallel %CPU_COUNT%
