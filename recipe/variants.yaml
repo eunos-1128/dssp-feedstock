@@ -3,7 +3,7 @@ c_stdlib_version:
     then: 10.15
 libboost_devel:
   - if: win
-    then: '1.88'
+    then: 1.88
 libboost_python_devel:
   - if: win
-    then: '1.88'
+    then: 1.88
