@@ -1,7 +1,7 @@
 @echo on
 
 @REM Refer to https://github.com/conda-forge/dssp-feedstock/pull/14#issuecomment-2974049079 for `-DCIFPP_DATA_DIR=''`
-cmake -S . -B build ^
+cmake -S . -B build -G "NMake Makefiles JOM" ^
     %CMAKE_ARGS% ^
     -DCMAKE_PREFIX_PATH="%PREFIX%" ^
     -DCMAKE_CXX_FLAGS="%CXXFLAGS% /EHsc" ^
@@ -20,7 +20,7 @@ cmake -S . -B build ^
     -DCMAKE_SHARED_LINKER_FLAGS="/FORCE:MULTIPLE"
 if errorlevel 1 exit 1
 
-cmake --build build --config Release --parallel %CPU_COUNT%
+cmake --build build --parallel %CPU_COUNT%
 if errorlevel 1 exit 1
 
 cmake --install build
@@ -63,7 +63,13 @@ IF EXIST "%PREFIX%\share\libcifpp\components.cif.gz" (
 
 @REM activaton and deactivation scripts for Windows
 mkdir "%PREFIX%\etc\conda\activate.d" 2>nul
+if errorlevel 1 exit 1
+
 mkdir "%PREFIX%\etc\conda\deactivate.d" 2>nul
+if errorlevel 1 exit 1
+
 copy /Y "%RECIPE_DIR%\activate.bat" "%PREFIX%\etc\conda\activate.d\dssp_activate.bat"
+if errorlevel 1 exit 1
+
 copy /Y "%RECIPE_DIR%\deactivate.bat" "%PREFIX%\etc\conda\deactivate.d\dssp_deactivate.bat"
 if errorlevel 1 exit 1
