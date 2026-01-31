@@ -41,10 +41,12 @@ requirements:
     # libcifpp is fetched and statically linked during building.
     # - bioconda::libcifpp
     - libmcfp
+    - numpy <2.0
     - pcre2
     - python ${{ python }}
     - zlib
   run:
+    - ${{ pin_compatible("numpy") }}
     - python ${{ python }}
   run_exports:
     - ${{ pin_subpackage(name|lower, upper_bound="x.x") }}
