@@ -5,12 +5,15 @@ sed -i "s#if(NOT WIN32)#if(TRUE)#" python-module/CMakeLists.txt
 if errorlevel 1 exit 1
 sed -i "s#if(WIN32 OR NOT Boost_FOUND)#if(NOT Boost_FOUND)#" python-module/CMakeLists.txt
 if errorlevel 1 exit 1
+sed -i "s#find_package(Python 3.13#find_package(Python 3#" python-module/CMakeLists.txt
+if errorlevel 1 exit 1
 
 @REM Refer to https://github.com/conda-forge/dssp-feedstock/pull/14#issuecomment-2974049079 for `-DCIFPP_DATA_DIR=''`
 cmake -S . -B build -G "NMake Makefiles JOM" ^
     %CMAKE_ARGS% ^
     -DCMAKE_CXX_FLAGS="%CXXFLAGS% /EHsc" ^
     -DCMAKE_CXX_STANDARD=20 ^
+    -DBUILD_SHARED_LIBS=ON ^
     -DBUILD_TESTING=OFF ^
     -DINSTALL_LIBRARY=ON ^
     -DBUILD_PYTHON_MODULE=ON ^
@@ -25,6 +28,20 @@ cmake --build build --parallel %CPU_COUNT%
 if errorlevel 1 exit 1
 
 cmake --install build
+if errorlevel 1 exit 1
+
+@REM libcifpp is not available as a standalone package on conda-forge,
+@REM so we need to manually copy the shared library built as a CMake
+@REM FetchContent dependency into the package prefix.
+@REM On Windows, the shared library is split into two files:
+@REM   cifpp.dll  - the runtime shared library, copied to Library\bin\
+@REM   cifpp.lib  - the import library,         copied to Library\lib\
+set CIFPP_BUILD_DIR=%SRC_DIR%\build\_deps\cifpp-build
+if errorlevel 1 exit 1
+if exist "%CIFPP_BUILD_DIR%\cifpp.dll" (
+    copy /Y "%CIFPP_BUILD_DIR%\cifpp.dll" "%PREFIX%\Library\bin\"
+    copy /Y "%CIFPP_BUILD_DIR%\cifpp.lib" "%PREFIX%\Library\lib\"
+)
 if errorlevel 1 exit 1
 
 if not exist "%PREFIX%\share\libcifpp" mkdir "%PREFIX%\share\libcifpp"
