@@ -91,3 +91,33 @@ if errorlevel 1 exit 1
 
 copy /Y "%RECIPE_DIR%\scripts\deactivate.bat" "%PREFIX%\etc\conda\deactivate.d\%PKG_NAME%_deactivate.bat"
 if errorlevel 1 exit 1
+
+copy /Y "%RECIPE_DIR%\scripts\activate.sh" "%PREFIX%\etc\conda\activate.d\%PKG_NAME%_activate.sh"
+if errorlevel 1 exit 1
+
+copy /Y "%RECIPE_DIR%\scripts\deactivate.sh" "%PREFIX%\etc\conda\deactivate.d\%PKG_NAME%_deactivate.sh"
+if errorlevel 1 exit 1
+
+copy /Y "%RECIPE_DIR%\scripts\activate.ps1" "%PREFIX%\etc\conda\activate.d\%PKG_NAME%_activate.ps1"
+if errorlevel 1 exit 1
+
+copy /Y "%RECIPE_DIR%\scripts\deactivate.ps1" "%PREFIX%\etc\conda\deactivate.d\%PKG_NAME%_deactivate.ps1"
+if errorlevel 1 exit 1
+
+copy /Y "%RECIPE_DIR%\scripts\activate.fish" "%PREFIX%\etc\conda\activate.d\%PKG_NAME%_activate.fish"
+if errorlevel 1 exit 1
+
+copy /Y "%RECIPE_DIR%\scripts\deactivate.fish" "%PREFIX%\etc\conda\deactivate.d\%PKG_NAME%_deactivate.fish"
+if errorlevel 1 exit 1
+
+copy /Y "%RECIPE_DIR%\scripts\activate.csh" "%PREFIX%\etc\conda\activate.d\%PKG_NAME%_activate.csh"
+if errorlevel 1 exit 1
+
+copy /Y "%RECIPE_DIR%\scripts\deactivate.csh" "%PREFIX%\etc\conda\deactivate.d\%PKG_NAME%_deactivate.csh"
+if errorlevel 1 exit 1
+
+copy /Y "%RECIPE_DIR%\scripts\activate.xsh" "%PREFIX%\etc\conda\activate.d\%PKG_NAME%_activate.xsh"
+if errorlevel 1 exit 1
+
+copy /Y "%RECIPE_DIR%\scripts\deactivate.xsh" "%PREFIX%\etc\conda\deactivate.d\%PKG_NAME%_deactivate.xsh"
+if errorlevel 1 exit 1
