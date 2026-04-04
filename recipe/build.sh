@@ -56,7 +56,7 @@ fi
 # activaton and deactivation scripts
 mkdir -p "${PREFIX}/etc/conda/activate.d"
 mkdir -p "${PREFIX}/etc/conda/deactivate.d"
-install -m 644 "${RECIPE_DIR}/activate.sh" "${PREFIX}/etc/conda/activate.d/dssp_activate.sh"
-install -m 644 "${RECIPE_DIR}/deactivate.sh" "${PREFIX}/etc/conda/deactivate.d/dssp_deactivate.sh"
-install -m 644 "${RECIPE_DIR}/activate.fish" "${PREFIX}/etc/conda/activate.d/dssp_activate.fish"
-install -m 644 "${RECIPE_DIR}/deactivate.fish" "${PREFIX}/etc/conda/deactivate.d/dssp_deactivate.fish"
+install -m 644 "${RECIPE_DIR}/scripts/activate.sh" "${PREFIX}/etc/conda/activate.d/${PKG_NAME}_activate.sh"
+install -m 644 "${RECIPE_DIR}/scripts/deactivate.sh" "${PREFIX}/etc/conda/deactivate.d/${PKG_NAME}_deactivate.sh"
+install -m 644 "${RECIPE_DIR}/scripts/activate.fish" "${PREFIX}/etc/conda/activate.d/${PKG_NAME}_activate.fish"
+install -m 644 "${RECIPE_DIR}/scripts/deactivate.fish" "${PREFIX}/etc/conda/deactivate.d/${PKG_NAME}_deactivate.fish"
